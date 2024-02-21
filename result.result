@@ -589,3 +589,26 @@ NR:  349 ROK:   30 MIESIĄC:    1 DATA:   2049-12-10 RATA:     1056.00 ODSETKI: 
  NR:  359 ROK:   30 MIESIĄC:   11 DATA:   2050-10-10 RATA:     1009.33 ODSETKI:        9.33 KAPITAŁ:     1000.00 NADPŁATA:           0 PKWT:       1000.00 PMSC:             1
  NR:  360 ROK:   30 MIESIĄC:   12 DATA:   2050-11-10 RATA:     1004.67 ODSETKI:        4.67 KAPITAŁ:     1000.00 NADPŁATA:           0 PKWT:          0.00 PMSC:             0
  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+KWOTA KREDYTU: 234567 ZŁ
+OKRES KREDYTOWANIA: 13 MIESIECY
+ODSETKI: 4%
+MIESIAC ROZPOCZECIA NADPLAT: 1 MIESIĄC:
+SUMA ODSETEK: 5509.65 ZŁ
+PROWIZJA ZA NADPLATY: 0.00 ZŁ
+SUMA STRAT: 5509.65 ZŁ
+SUMA KAPITAŁU: 234567.00 ZŁ
+NR:    1 ROK:    1 MIESIĄC:    1 DATA:   2020-12-10 RATA:    18467.44 ODSETKI:      781.89 KAPITAŁ:    17685.55 NADPŁATA:           0 PKWT:     216881.45 PMSC:            12
+ NR:    2 ROK:    1 MIESIĄC:    2 DATA:   2021-01-10 RATA:    18467.44 ODSETKI:      722.94 KAPITAŁ:    17744.50 NADPŁATA:           0 PKWT:     199136.95 PMSC:            11
+ NR:    3 ROK:    1 MIESIĄC:    3 DATA:   2021-02-10 RATA:    18467.44 ODSETKI:      663.79 KAPITAŁ:    17803.65 NADPŁATA:           0 PKWT:     181333.30 PMSC:            10
+ NR:    4 ROK:    1 MIESIĄC:    4 DATA:   2021-03-10 RATA:    18467.44 ODSETKI:      604.44 KAPITAŁ:    17863.00 NADPŁATA:           0 PKWT:     163470.30 PMSC:             9
+ NR:    5 ROK:    1 MIESIĄC:    5 DATA:   2021-04-10 RATA:    18467.44 ODSETKI:      544.90 KAPITAŁ:    17922.54 NADPŁATA:           0 PKWT:     145547.76 PMSC:             8
+ NR:    6 ROK:    1 MIESIĄC:    6 DATA:   2021-05-10 RATA:    18467.44 ODSETKI:      485.16 KAPITAŁ:    17982.28 NADPŁATA:           0 PKWT:     127565.48 PMSC:             7
+ NR:    7 ROK:    1 MIESIĄC:    7 DATA:   2021-06-10 RATA:    18467.44 ODSETKI:      425.22 KAPITAŁ:    18042.22 NADPŁATA:           0 PKWT:     109523.26 PMSC:             6
+ NR:    8 ROK:    1 MIESIĄC:    8 DATA:   2021-07-10 RATA:    18467.44 ODSETKI:      365.08 KAPITAŁ:    18102.36 NADPŁATA:           0 PKWT:      91420.90 PMSC:             5
+ NR:    9 ROK:    1 MIESIĄC:    9 DATA:   2021-08-10 RATA:    18467.44 ODSETKI:      304.74 KAPITAŁ:    18162.70 NADPŁATA:           0 PKWT:      73258.20 PMSC:             4
+ NR:   10 ROK:    1 MIESIĄC:   10 DATA:   2021-09-10 RATA:    18467.44 ODSETKI:      244.19 KAPITAŁ:    18223.25 NADPŁATA:           0 PKWT:      55034.95 PMSC:             3
+ NR:   11 ROK:    1 MIESIĄC:   11 DATA:   2021-10-10 RATA:    18467.44 ODSETKI:      183.45 KAPITAŁ:    18283.99 NADPŁATA:           0 PKWT:      36750.96 PMSC:             2
+ NR:   12 ROK:    1 MIESIĄC:   12 DATA:   2021-11-10 RATA:    18467.44 ODSETKI:      122.50 KAPITAŁ:    18344.94 NADPŁATA:           0 PKWT:      18406.02 PMSC:             1
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NR:   13 ROK:    2 MIESIĄC:    1 DATA:   2021-12-10 RATA:    18467.37 ODSETKI:       61.35 KAPITAŁ:    18406.02 NADPŁATA:           0 PKWT:          0.00 PMSC:             0
+ 
