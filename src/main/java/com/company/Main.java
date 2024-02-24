@@ -8,12 +8,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.company.configuration.CalculatorConfiguration;
 
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 public class Main {
-    public static void main(String... args) throws UnsupportedEncodingException {
+    public static void main(String... args) {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(CalculatorConfiguration.class);
         InputDataRepository inputDataRepository = context.getBean(InputDataRepository.class);
@@ -33,37 +31,4 @@ public class Main {
         while(true);
     }
 
-//    private static void calculateCredit(InputData inputData) {
-//
-//        MortgageCalculationService mortgageCalculationService = context.getBean(MortgageCalculationService.class);
-//        mortgageCalculationService.calculate(updatedInputData);
-//    }
-
-//    private class CalculatorCreator
-//    {
-//        private static MortgageCalculationService instance;
-//
-//        private CalculatorCreator(){
-//        }
-//
-//        public static MortgageCalculationService getInstance(){
-//            if(Objects.isNull(instance)){
-//                instance = new MortgageCalculationServiceImpl(
-//                        new RateCalculationServiceImpl(
-//                                new TimePointCalculationServiceImpl(),
-//                                new OverpaymentCalculationServiceImpl(),
-//                                new AmountsCalculationServiceImpl(
-//                                        new ConstantAmountsCalculationServiceImpl(),
-//                                        new DecreasingAmountsCalculationServiceImpl()
-//                                ),
-//                                new ResidualCalculationServiceImpl(),
-//                                new ReferenceCalculationServiceImpl()
-//                        ),
-//                        new PrintingServiceImpl(),
-//                        SummaryServiceFactory.create()
-//                );
-//            }
-//            return instance;
-//        }
-//    }
 }
