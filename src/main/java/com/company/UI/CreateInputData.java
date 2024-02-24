@@ -3,6 +3,7 @@ package com.company.UI;
 import com.company.model.InputData;
 import com.company.model.Overpayment;
 import com.company.model.RateType;
+import com.company.service.InputDataRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -135,5 +136,10 @@ public class CreateInputData {
             }
         }
         while (true);
+    }
+
+    public InputData readDataFromFile(InputDataRepository inputDataRepository){
+    final var inputData = inputDataRepository.read();
+        return Optional.of(inputData).get().orElse(null);
     }
 }

@@ -1,9 +1,11 @@
 package com.company.service;
 
 import com.company.model.*;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class ReferenceCalculationServiceImpl implements ReferenceCalculationService {
 
     @Override

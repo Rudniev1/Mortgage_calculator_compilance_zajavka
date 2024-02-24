@@ -1,14 +1,22 @@
-package com.company.service;
+package com.company.configuration;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import com.company.model.Rate;
 import com.company.model.RateAmounts;
 import com.company.model.Summary;
+import com.company.service.SummaryService;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.function.Function;
 
-public class SummaryServiceFactory {
+@Configuration
+@ComponentScan(basePackages = "com.company")
+public class CalculatorConfiguration {
 
+    @Bean
     public static SummaryService create() {
         return rates -> {
             BigDecimal interestSum = calculate(rates, rate -> rate.rateAmounts().interestAmount());
@@ -23,10 +31,10 @@ public class SummaryServiceFactory {
         return rateAmounts.capitalAmount().add(rateAmounts.overpayment().amount());
     }
 
-    private static BigDecimal calculate(final List<Rate> rates, Function function) {
+    private static BigDecimal calculate(final List<Rate> rates, Function<Rate, BigDecimal> function) {
 
         return rates.stream()
-                .reduce(BigDecimal.ZERO,(sum, rate) -> sum.add(function.calculate(rate)), BigDecimal::add);
+                .reduce(BigDecimal.ZERO,(sum, rate) ->  sum.add(function.apply(rate)), BigDecimal::add);
     }
 
 }

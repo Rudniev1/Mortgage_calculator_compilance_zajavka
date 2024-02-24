@@ -6,12 +6,11 @@ import com.company.model.InputData;
 import com.company.model.Overpayment;
 import com.company.model.Rate;
 import com.company.model.RateAmounts;
-
-import static com.company.model.RateType.CONSTANT;
-import static com.company.model.RateType.DECREASING;
+import org.springframework.stereotype.Service;
 
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class AmountsCalculationServiceImpl implements AmountsCalculationService {
 
     private final ConstantAmountsCalculationService constantAmountsCalculationService;

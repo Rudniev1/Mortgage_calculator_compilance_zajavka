@@ -5,11 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import com.company.model.InputData;
 import com.company.model.Rate;
 import com.company.model.Summary;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class MortgageCalculationServiceImpl implements MortgageCalculationService {
 
     private final RateCalculationService rateCalculationService;
