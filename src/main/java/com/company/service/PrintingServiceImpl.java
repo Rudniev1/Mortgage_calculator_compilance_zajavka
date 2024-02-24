@@ -5,6 +5,7 @@ import com.company.model.InputData;
 import com.company.model.Overpayment;
 import com.company.model.Rate;
 import com.company.model.Summary;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
+@Service
 public class PrintingServiceImpl implements PrintingService {
 
     private static final Path RESULT_FILE_PATH = Paths.get("result.result");

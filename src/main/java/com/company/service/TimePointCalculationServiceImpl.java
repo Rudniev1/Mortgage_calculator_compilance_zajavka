@@ -3,12 +3,13 @@ package com.company.service;
 import com.company.model.InputData;
 import com.company.model.Rate;
 import com.company.model.TimePoint;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
+@Service
 public class TimePointCalculationServiceImpl implements TimePointCalculationService {
 
     public TimePoint calculate(final BigDecimal rateNumber, final InputData inputData) {

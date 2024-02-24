@@ -3,6 +3,7 @@ package com.company.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.company.model.*;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class RateCalculationServiceImpl implements RateCalculationService {
 
     private final TimePointCalculationService timePointCalculationService;

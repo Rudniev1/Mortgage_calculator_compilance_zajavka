@@ -2,11 +2,13 @@ package com.company.service;
 
 import com.company.model.InputData;
 import com.company.model.Overpayment;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
+@Service
 public class OverpaymentCalculationServiceImpl implements OverpaymentCalculationService {
 
     @Override

@@ -4,10 +4,12 @@ import com.company.model.InputData;
 import com.company.model.MortgageResidual;
 import com.company.model.Rate;
 import com.company.model.RateAmounts;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Service
 public class ResidualCalculationServiceImpl implements ResidualCalculationService {
 
     @Override

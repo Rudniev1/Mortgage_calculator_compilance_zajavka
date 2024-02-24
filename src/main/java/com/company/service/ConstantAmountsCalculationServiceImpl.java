@@ -5,11 +5,13 @@ import com.company.model.InputData;
 import com.company.model.Overpayment;
 import com.company.model.Rate;
 import com.company.model.RateAmounts;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Slf4j
+@Service
 public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCalculationService {
 
     @Override
