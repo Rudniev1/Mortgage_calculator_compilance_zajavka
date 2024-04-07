@@ -3,7 +3,7 @@ package com.company.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.company.model.InputData;
-import com.company.model.Rate;
+import com.company.model.Installment;
 import com.company.model.Summary;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class MortgageCalculationServiceImpl implements MortgageCalculationService {
 
-    private final RateCalculationService rateCalculationService;
+    private final InstallmentCalculationService installmentCalculationService;
 
     private final PrintingService printingService;
 
@@ -24,12 +24,12 @@ public class MortgageCalculationServiceImpl implements MortgageCalculationServic
     public void calculate(InputData inputData) {
         printingService.printIntroInformation(inputData);
 
-        List<Rate> rates = rateCalculationService.calculate(inputData);
-        rates.forEach(element -> log.debug("Rate: [{}]", element));
-        Summary summary = summaryService.calculateSummary(rates);
+        List<Installment> installments = installmentCalculationService.calculate(inputData);
+        installments.forEach(element -> log.debug("Rate: [{}]", element));
+        Summary summary = summaryService.calculateSummary(installments);
 
         printingService.printSummary(summary);
-        printingService.printSchedule(rates, inputData);
+        printingService.printSchedule(installments, inputData);
     }
 
 }

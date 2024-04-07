@@ -4,7 +4,6 @@ import com.company.service.TimePointCalculationService;
 import com.company.service.TimePointCalculationServiceImpl;
 import fixtures.TestDataFixtures;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import com.company.model.*;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
@@ -30,8 +28,8 @@ class TimePointCalculationServiceTest {
 
 
     @Test
-    @DisplayName("Should calculate first rate time point successfully")
-    void calculateTimePointForFirstRate() {
+    @DisplayName("Should calculate first installment time point successfully")
+    void calculateTimePointForFirstInstallment() {
         // given
         InputData inputData = TestDataFixtures.someInputData();
         TimePoint expected = TestDataFixtures.someTimePoint();
@@ -47,18 +45,18 @@ class TimePointCalculationServiceTest {
 
     @ParameterizedTest
     @MethodSource(value = "testMortgageData")
-    @DisplayName("Should calculate other rate time point than first successfully")
-    void calculateTimePointForOtherRates(LocalDate expectedDate, BigDecimal rateNumber, BigDecimal year, BigDecimal month, LocalDate date) {
+    @DisplayName("Should calculate other installment time point than first successfully")
+    void calculateTimePointForOtherInstallments(LocalDate expectedDate, BigDecimal rateNumber, BigDecimal year, BigDecimal month, LocalDate date) {
         // given
         TimePoint timePoint = TestDataFixtures.someTimePoint()
             .withYear(year)
             .withMonth(month)
             .withDate(date);
-        Rate rate = TestDataFixtures.someRate().withTimePoint(timePoint);
+        Installment installment = TestDataFixtures.someInstallment().withTimePoint(timePoint);
         TimePoint expected = timePoint.withDate(expectedDate);
 
         // when
-        TimePoint result = timePointCalculationService.calculate(rateNumber, rate);
+        TimePoint result = timePointCalculationService.calculate(rateNumber, installment);
 
         // then
         Assertions.assertEquals(expected, result);

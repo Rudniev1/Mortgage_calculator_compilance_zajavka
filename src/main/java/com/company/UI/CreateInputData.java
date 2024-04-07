@@ -2,7 +2,7 @@ package com.company.UI;
 
 import com.company.model.InputData;
 import com.company.model.Overpayment;
-import com.company.model.RateType;
+import com.company.model.InstallmentType;
 import com.company.service.InputDataRepository;
 
 import java.math.BigDecimal;
@@ -34,7 +34,7 @@ public class CreateInputData {
                     .withMonthsDuration(duration)
                     .withWiborPercent(wiborPrecent)
                     .withMarginPercent(marginPrecent)
-                    .withRateType(chooseRateType())
+                    .withInstallmentType(chooseRateType())
                     .withOverpaymentSchema(chooseIfOverpayment(amount, duration));
             if (!inputData.getOverpaymentSchema().equals(Collections.EMPTY_MAP))
                 inputData.withOverpaymentReduceWay(chooseReduceWay());
@@ -46,7 +46,7 @@ public class CreateInputData {
         return inputData;
     }
 
-    private RateType chooseRateType() {
+    private InstallmentType chooseRateType() {
 
         do {
             System.out.println("Raty malejące czy stałe? 1 - stałe, 2 - malejące:");
@@ -54,10 +54,10 @@ public class CreateInputData {
 
             switch (rateTypeOption) {
                 case 1 -> {
-                    return RateType.CONSTANT;
+                    return InstallmentType.CONSTANT;
                 }
                 case 2 -> {
-                    return RateType.DECREASING;
+                    return InstallmentType.DECREASING;
                 }
                 default -> System.out.println(wrongChooseInfo);
             }

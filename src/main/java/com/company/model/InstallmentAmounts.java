@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 
 @With
 @Builder
-public record RateAmounts(
-        BigDecimal rateAmount,
+public record InstallmentAmounts(
+        BigDecimal installmentAmount,
         BigDecimal interestAmount,
         BigDecimal capitalAmount,
         Overpayment overpayment

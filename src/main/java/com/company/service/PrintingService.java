@@ -1,7 +1,7 @@
 package com.company.service;
 
 import com.company.model.InputData;
-import com.company.model.Rate;
+import com.company.model.Installment;
 import com.company.model.Summary;
 
 import java.util.List;
@@ -67,7 +67,7 @@ public interface PrintingService {
 
     void printIntroInformation(InputData inputData);
 
-    void printSchedule(List<Rate> rates, final InputData inputData);
+    void printSchedule(List<Installment> installments, final InputData inputData);
 
     void printSummary(Summary summaryNoOverpayment);
 }

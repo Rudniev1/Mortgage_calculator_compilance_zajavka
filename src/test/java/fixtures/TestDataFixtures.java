@@ -8,11 +8,11 @@ import java.util.Map;
 
 public class TestDataFixtures {
 
-    public static Rate someRate() {
-        return Rate.builder()
-            .rateNumber(BigDecimal.valueOf(10))
+    public static Installment someInstallment() {
+        return Installment.builder()
+            .installmentNumber(BigDecimal.valueOf(10))
             .timePoint(someTimePoint())
-            .rateAmounts(someRateAmounts())
+            .installmentAmounts(someRateAmounts())
             .mortgageResidual(someMortgageResidual())
             .mortgageReference(someMortgageReference())
             .build();
@@ -38,7 +38,7 @@ public class TestDataFixtures {
             .wiborPercent(BigDecimal.valueOf(2.70))
             .amount(BigDecimal.valueOf(198267.46))
             .monthsDuration(BigDecimal.valueOf(180))
-            .rateType(RateType.CONSTANT)
+            .installmentType(InstallmentType.CONSTANT)
             .marginPercent(BigDecimal.valueOf(1.8))
             .overpaymentProvisionPercent(BigDecimal.valueOf(3))
             .overpaymentProvisionMonths(BigDecimal.valueOf(36))
@@ -65,24 +65,24 @@ public class TestDataFixtures {
             .build();
     }
 
-    public static RateAmounts someRateAmounts() {
-        return RateAmounts.builder()
-            .rateAmount(new BigDecimal("1516.73"))
+    public static InstallmentAmounts someRateAmounts() {
+        return InstallmentAmounts.builder()
+            .installmentAmount(new BigDecimal("1516.73"))
             .capitalAmount(new BigDecimal("773.23"))
             .interestAmount(new BigDecimal("743.50"))
             .build();
     }
 
-    public static Rate someRate5() {
-        return Rate.builder()
-            .rateNumber(BigDecimal.valueOf(5))
+    public static Installment someInstallment5() {
+        return Installment.builder()
+            .installmentNumber(BigDecimal.valueOf(5))
             .timePoint(TimePoint.builder()
                 .year(BigDecimal.ONE)
                 .month(BigDecimal.valueOf(5))
                 .date(LocalDate.of(2010, 9, 10))
                 .build())
-            .rateAmounts(RateAmounts.builder()
-                .rateAmount(new BigDecimal("1516.73"))
+            .installmentAmounts(InstallmentAmounts.builder()
+                .installmentAmount(new BigDecimal("1516.73"))
                 .interestAmount(new BigDecimal("731.84"))
                 .capitalAmount(new BigDecimal("784.89"))
                 .overpayment(Overpayment.builder()
@@ -101,16 +101,16 @@ public class TestDataFixtures {
             .build();
     }
 
-    public static Rate someRate10() {
-        return Rate.builder()
-            .rateNumber(BigDecimal.valueOf(10))
+    public static Installment someInstallment10() {
+        return Installment.builder()
+            .installmentNumber(BigDecimal.valueOf(10))
             .timePoint(TimePoint.builder()
                 .year(BigDecimal.ONE)
                 .month(BigDecimal.valueOf(10))
                 .date(LocalDate.of(2011, 2, 10))
                 .build())
-            .rateAmounts(RateAmounts.builder()
-                .rateAmount(new BigDecimal("1516.73"))
+            .installmentAmounts(InstallmentAmounts.builder()
+                .installmentAmount(new BigDecimal("1516.73"))
                 .interestAmount(new BigDecimal("717.01"))
                 .capitalAmount(new BigDecimal("799.72"))
                 .overpayment(Overpayment.builder()
@@ -129,16 +129,16 @@ public class TestDataFixtures {
             .build();
     }
 
-    public static Rate someRate40() {
-        return Rate.builder()
-            .rateNumber(BigDecimal.valueOf(40))
+    public static Installment someInstallment40() {
+        return Installment.builder()
+            .installmentNumber(BigDecimal.valueOf(40))
             .timePoint(TimePoint.builder()
                 .year(BigDecimal.valueOf(4))
                 .month(BigDecimal.valueOf(4))
                 .date(LocalDate.of(2013, 8, 10))
                 .build())
-            .rateAmounts(RateAmounts.builder()
-                .rateAmount(new BigDecimal("1516.73"))
+            .installmentAmounts(InstallmentAmounts.builder()
+                .installmentAmount(new BigDecimal("1516.73"))
                 .interestAmount(new BigDecimal("621.98"))
                 .capitalAmount(new BigDecimal("894.75"))
                 .overpayment(Overpayment.builder()
@@ -157,16 +157,16 @@ public class TestDataFixtures {
             .build();
     }
 
-    public static Rate someRate80() {
-        return Rate.builder()
-            .rateNumber(BigDecimal.valueOf(80))
+    public static Installment someInstallment80() {
+        return Installment.builder()
+            .installmentNumber(BigDecimal.valueOf(80))
             .timePoint(TimePoint.builder()
                 .year(BigDecimal.valueOf(7))
                 .month(BigDecimal.valueOf(8))
                 .date(LocalDate.of(2016, 12, 10))
                 .build())
-            .rateAmounts(RateAmounts.builder()
-                .rateAmount(new BigDecimal("1516.73"))
+            .installmentAmounts(InstallmentAmounts.builder()
+                .installmentAmount(new BigDecimal("1516.73"))
                 .interestAmount(new BigDecimal("477.47"))
                 .capitalAmount(new BigDecimal("1039.26"))
                 .overpayment(Overpayment.builder()

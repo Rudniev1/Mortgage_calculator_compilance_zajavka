@@ -3,7 +3,7 @@ package com.company.model;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum RateType {
+public enum InstallmentType {
     CONSTANT("CONSTANT"),
     DECREASING("DECREASING");
 

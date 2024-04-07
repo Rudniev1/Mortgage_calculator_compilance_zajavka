@@ -3,8 +3,8 @@ package com.company.service;
 import lombok.extern.slf4j.Slf4j;
 import com.company.model.InputData;
 import com.company.model.Overpayment;
-import com.company.model.Rate;
-import com.company.model.RateAmounts;
+import com.company.model.Installment;
+import com.company.model.InstallmentAmounts;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.RoundingMode;
 public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCalculationService {
 
     @Override
-    public RateAmounts calculate(final InputData inputData, final Overpayment overpayment) {
+    public InstallmentAmounts calculate(final InputData inputData, final Overpayment overpayment) {
         BigDecimal interestPercent = inputData.getInterestPercent();
         log.debug("InterestPercent: [{}]", interestPercent);
         BigDecimal q = AmountsCalculationService.calculateQ(interestPercent);
@@ -31,21 +31,21 @@ public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCal
         BigDecimal capitalAmount = AmountsCalculationService.compareCapitalWithResidual(rateAmount.subtract(interestAmount), residualAmount);
         log.info("CapitalAmount: [{}]", capitalAmount);
 
-        return new RateAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
+        return new InstallmentAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
     }
 
     @Override
-    public RateAmounts calculate(final InputData inputData, final Overpayment overpayment, final Rate previousRate) {
+    public InstallmentAmounts calculate(final InputData inputData, final Overpayment overpayment, final Installment previousInstallment) {
         BigDecimal interestPercent = inputData.getInterestPercent();
         log.debug("InterestPercent: [{}]", interestPercent);
         BigDecimal q = AmountsCalculationService.calculateQ(interestPercent);
         log.trace("Q: [{}]", q);
 
-        BigDecimal residualAmount = previousRate.mortgageResidual().residualAmount();
+        BigDecimal residualAmount = previousInstallment.mortgageResidual().residualAmount();
         log.info("ResidualAmount: [{}]", residualAmount);
-        BigDecimal referenceAmount = previousRate.mortgageReference().referenceAmount();
+        BigDecimal referenceAmount = previousInstallment.mortgageReference().referenceAmount();
         log.info("ReferenceAmount: [{}]", referenceAmount);
-        BigDecimal referenceDuration = previousRate.mortgageReference().referenceDuration();
+        BigDecimal referenceDuration = previousInstallment.mortgageReference().referenceDuration();
         log.info("ReferenceDuration: [{}]", referenceDuration);
 
         BigDecimal interestAmount = AmountsCalculationService.calculateInterestAmount(residualAmount, interestPercent);
@@ -55,7 +55,7 @@ public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCal
         BigDecimal capitalAmount = AmountsCalculationService.compareCapitalWithResidual(rateAmount.subtract(interestAmount), residualAmount);
         log.info("CapitalAmount: [{}]", capitalAmount);
 
-        return new RateAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
+        return new InstallmentAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
     }
 
     private BigDecimal calculateConstantRateAmount(

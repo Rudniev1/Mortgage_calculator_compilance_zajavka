@@ -7,10 +7,10 @@ import java.math.BigDecimal;
 
 @With
 @Builder
-public record Rate(
-        BigDecimal rateNumber,
+public record Installment(
+        BigDecimal installmentNumber,
         TimePoint timePoint,
-        RateAmounts rateAmounts,
+        InstallmentAmounts installmentAmounts,
         MortgageResidual mortgageResidual,
         MortgageReference mortgageReference
 ) {

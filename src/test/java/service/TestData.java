@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 public class TestData {
 
-    static Rate someRate() {
-        return Rate.builder()
+    static Installment someRate() {
+        return Installment.builder()
             .timePoint(someTimePoint())
             .mortgageResidual(someMortgageResidual())
             .mortgageReference(someMortgageReference())
@@ -35,7 +35,7 @@ public class TestData {
             .wiborPercent(BigDecimal.valueOf(2.70))
             .amount(BigDecimal.valueOf(198267.46))
             .monthsDuration(BigDecimal.valueOf(180))
-            .rateType(RateType.CONSTANT)
+            .installmentType(InstallmentType.CONSTANT)
             .marginPercent(BigDecimal.valueOf(1.8))
             .overpaymentProvisionPercent(BigDecimal.valueOf(3))
             .overpaymentProvisionMonths(BigDecimal.valueOf(36))
@@ -54,9 +54,9 @@ public class TestData {
             .build();
     }
 
-    static RateAmounts someRateAmounts() {
-        return RateAmounts.builder()
-            .rateAmount(new BigDecimal("1516.73"))
+    static InstallmentAmounts someRateAmounts() {
+        return InstallmentAmounts.builder()
+            .installmentAmount(new BigDecimal("1516.73"))
             .capitalAmount(new BigDecimal("773.23"))
             .interestAmount(new BigDecimal("743.50"))
             .build();
