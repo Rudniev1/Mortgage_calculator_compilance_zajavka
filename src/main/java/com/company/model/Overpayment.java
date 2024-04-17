@@ -1,7 +1,10 @@
 package com.company.model;
 
+import lombok.Builder;
+
 import java.math.BigDecimal;
 
+@Builder
 public record Overpayment(
         BigDecimal amount,
         BigDecimal provisionAmount

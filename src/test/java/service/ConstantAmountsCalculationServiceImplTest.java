@@ -1,53 +1,52 @@
 package service;
 
-import com.company.service.ConstantAmountsCalculationService;
 import com.company.service.ConstantAmountsCalculationServiceImpl;
+import fixtures.TestDataFixtures;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.company.model.InputData;
-import com.company.model.Rate;
-import com.company.model.RateAmounts;
+import com.company.model.Installment;
+import com.company.model.InstallmentAmounts;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 
+@ExtendWith(MockitoExtension.class)
 class ConstantAmountsCalculationServiceImplTest {
 
-    private ConstantAmountsCalculationService constantAmountsCalculationService;
-
-    @BeforeEach
-    public void setup() {
-        this.constantAmountsCalculationService = new ConstantAmountsCalculationServiceImpl();
-    }
+    @InjectMocks
+    private ConstantAmountsCalculationServiceImpl constantAmountsCalculationService;
 
     @Test
-    @DisplayName("Calculate rate amounts for first rate")
-    void shouldCalculateFirstRateAmountsCorrectly() {
+    @DisplayName("Calculate installment amounts for first rate")
+    void shouldCalculateFirstInstallmentAmountsCorrectly() {
         // given
-        InputData inputData = TestData.someInputData();
-        RateAmounts expected = TestData.someRateAmounts();
+        InputData inputData = TestDataFixtures.someInputData();
+        InstallmentAmounts expected = TestDataFixtures.someInstallmentAmounts();
 
         // when
-        RateAmounts result = constantAmountsCalculationService.calculate(inputData, null);
+        InstallmentAmounts result = constantAmountsCalculationService.calculate(inputData, null);
 
         // then
         Assertions.assertEquals(expected, result);
     }
 
     @Test
-    @DisplayName("Calculate rate amounts for other rates")
-    void shouldCalculateOtherRateAmountsCorrectly() {
+    @DisplayName("Calculate installment amounts for other rates")
+    void shouldCalculateOtherInstallmentAmountsCorrectly() {
         // given
-        InputData inputData = TestData.someInputData();
-        Rate rate = TestData.someRate();
-        RateAmounts expected = TestData.someRateAmounts()
-            .withRateAmount(new BigDecimal("3303.45"))
+        InputData inputData = TestDataFixtures.someInputData();
+        Installment installment = TestDataFixtures.someInstallment();
+        InstallmentAmounts expected = TestDataFixtures.someInstallmentAmounts()
+            .withInstallmentAmount(new BigDecimal("3303.45"))
             .withInterestAmount(new BigDecimal("2483.87"))
             .withCapitalAmount(new BigDecimal("819.58"));
 
         // when
-        RateAmounts result = constantAmountsCalculationService.calculate(inputData, null, rate);
+        InstallmentAmounts result = constantAmountsCalculationService.calculate(inputData, null, installment);
 
         // then
         Assertions.assertEquals(expected, result);

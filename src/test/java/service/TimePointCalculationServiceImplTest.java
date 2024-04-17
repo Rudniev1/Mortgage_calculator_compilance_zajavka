@@ -2,14 +2,17 @@ package service;
 
 import com.company.service.TimePointCalculationService;
 import com.company.service.TimePointCalculationServiceImpl;
+import fixtures.TestDataFixtures;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import com.company.model.*;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,45 +20,43 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-class TimePointCalculationServiceImplTest {
+@ExtendWith(MockitoExtension.class)
+class TimePointCalculationServiceTest {
 
-    private TimePointCalculationService timePointCalculationService;
+    @InjectMocks
+    private TimePointCalculationServiceImpl timePointCalculationService;
 
-    @BeforeEach
-    public void setup() {
-        this.timePointCalculationService = new TimePointCalculationServiceImpl();
-    }
 
     @Test
-    @DisplayName("Should calculate first rate time point successfully")
-    void calculateTimePointForFirstRate() {
+    @DisplayName("Should calculate first installment time point successfully")
+    void calculateTimePointForFirstInstallment() {
         // given
-        InputData inputData = TestData.someInputData();
-        TimePoint expected = TestData.someTimePoint();
+        InputData inputData = TestDataFixtures.someInputData();
+        TimePoint expected = TestDataFixtures.someTimePoint();
 
         // when
-        TimePoint result1 = timePointCalculationService.calculate(BigDecimal.valueOf(1), inputData);
+        TimePoint result = timePointCalculationService.calculate(BigDecimal.valueOf(1), inputData);
 
         // then
-        Assertions.assertEquals(expected, result1);
+        Assertions.assertEquals(expected, result);
         Assertions.assertThrows(RuntimeException.class,() ->
                 timePointCalculationService.calculate(BigDecimal.valueOf(8), inputData));
     }
 
     @ParameterizedTest
     @MethodSource(value = "testMortgageData")
-    @DisplayName("Should calculate other rate time point than first successfully")
-    void calculateTimePointForOtherRates(LocalDate expectedDate, BigDecimal rateNumber, BigDecimal year, BigDecimal month, LocalDate date) {
+    @DisplayName("Should calculate other installment time point than first successfully")
+    void calculateTimePointForOtherInstallments(LocalDate expectedDate, BigDecimal rateNumber, BigDecimal year, BigDecimal month, LocalDate date) {
         // given
-        TimePoint timePoint = TestData.someTimePoint()
+        TimePoint timePoint = TestDataFixtures.someTimePoint()
             .withYear(year)
             .withMonth(month)
             .withDate(date);
-        Rate rate = TestData.someRate().withTimePoint(timePoint);
+        Installment installment = TestDataFixtures.someInstallment().withTimePoint(timePoint);
         TimePoint expected = timePoint.withDate(expectedDate);
 
         // when
-        TimePoint result = timePointCalculationService.calculate(rateNumber, rate);
+        TimePoint result = timePointCalculationService.calculate(rateNumber, installment);
 
         // then
         Assertions.assertEquals(expected, result);
@@ -64,11 +65,11 @@ class TimePointCalculationServiceImplTest {
     public static Stream<Arguments> testMortgageData() {
         return Stream.of(
             arguments(
-                LocalDate.of(2010, 2, 1),
+                LocalDate.of(2020, 2, 1),
                 BigDecimal.valueOf(12),
                 BigDecimal.valueOf(1),
                 BigDecimal.valueOf(12),
-                LocalDate.of(2010, 1, 1)),
+                LocalDate.of(2020, 1, 1)),
             arguments(
                 LocalDate.of(2010, 2, 1),
                 BigDecimal.valueOf(15),

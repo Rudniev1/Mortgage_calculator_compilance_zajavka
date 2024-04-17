@@ -3,11 +3,10 @@ package com.company.service;
 import lombok.extern.slf4j.Slf4j;
 import com.company.model.InputData;
 import com.company.model.Overpayment;
-import com.company.model.Rate;
+import com.company.model.Installment;
 import com.company.model.Summary;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -56,13 +55,13 @@ public class PrintingServiceImpl implements PrintingService {
     }
 
     @Override
-    public void printSchedule(final List<Rate> rates, final InputData inputData) {
+    public void printSchedule(final List<Installment> installments, final InputData inputData) {
         if (!inputData.isMortgagePrintPayoffsSchedule()) {
             return;
         }
 
-        rates.stream()
-                .filter(rate -> rate.rateNumber().remainder(BigDecimal.valueOf(inputData.getMortgageRateNumberToPrint())).equals(BigDecimal.ZERO))
+        installments.stream()
+                .filter(rate -> rate.installmentNumber().remainder(BigDecimal.valueOf(inputData.getMortgageRateNumberToPrint())).equals(BigDecimal.ZERO))
                 .forEach(rate -> {
                     loging(formatRateLine(rate));
                     if(AmountsCalculationService.YEAR.equals(rate.timePoint().month()))
@@ -71,18 +70,18 @@ public class PrintingServiceImpl implements PrintingService {
         // loging(System.lineSeparator());
     }
 
-    private static String formatRateLine(Rate rate) {
+    private static String formatRateLine(Installment installment) {
         return String.format(SCHEDULE_TABLE_FORMAT,
-                RATE_LINE_KEYS.get(0), rate.rateNumber(),
-                RATE_LINE_KEYS.get(1), rate.timePoint().year(),
-                RATE_LINE_KEYS.get(2), rate.timePoint().month(),
-                RATE_LINE_KEYS.get(3), rate.timePoint().date(),
-                RATE_LINE_KEYS.get(4), rate.rateAmounts().rateAmount(),
-                RATE_LINE_KEYS.get(5), rate.rateAmounts().interestAmount(),
-                RATE_LINE_KEYS.get(6), rate.rateAmounts().capitalAmount(),
-                RATE_LINE_KEYS.get(7), rate.rateAmounts().overpayment().amount(),
-                RATE_LINE_KEYS.get(8), rate.mortgageResidual().residualAmount(),
-                RATE_LINE_KEYS.get(9), rate.mortgageResidual().residualDuration()
+                RATE_LINE_KEYS.get(0), installment.installmentNumber(),
+                RATE_LINE_KEYS.get(1), installment.timePoint().year(),
+                RATE_LINE_KEYS.get(2), installment.timePoint().month(),
+                RATE_LINE_KEYS.get(3), installment.timePoint().date(),
+                RATE_LINE_KEYS.get(4), installment.installmentAmounts().installmentAmount(),
+                RATE_LINE_KEYS.get(5), installment.installmentAmounts().interestAmount(),
+                RATE_LINE_KEYS.get(6), installment.installmentAmounts().capitalAmount(),
+                RATE_LINE_KEYS.get(7), installment.installmentAmounts().overpayment().amount(),
+                RATE_LINE_KEYS.get(8), installment.mortgageResidual().residualAmount(),
+                RATE_LINE_KEYS.get(9), installment.mortgageResidual().residualDuration()
         );
     }
 

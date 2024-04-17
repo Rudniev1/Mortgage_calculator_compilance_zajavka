@@ -2,13 +2,13 @@ package com.company.service;
 
 import com.company.model.InputData;
 import com.company.model.MortgageResidual;
-import com.company.model.Rate;
-import com.company.model.RateAmounts;
+import com.company.model.Installment;
+import com.company.model.InstallmentAmounts;
 
 public interface ResidualCalculationService {
 
-    MortgageResidual calculate(RateAmounts rateAmounts, InputData inputData);
+    MortgageResidual calculate(InstallmentAmounts installmentAmounts, InputData inputData);
 
-    MortgageResidual calculate(RateAmounts rateAmounts, final InputData inputData, Rate previousRate);
+    MortgageResidual calculate(InstallmentAmounts installmentAmounts, final InputData inputData, Installment previousInstallment);
 
 }

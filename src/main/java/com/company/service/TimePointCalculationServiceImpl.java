@@ -1,7 +1,7 @@
 package com.company.service;
 
 import com.company.model.InputData;
-import com.company.model.Rate;
+import com.company.model.Installment;
 import com.company.model.TimePoint;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class TimePointCalculationServiceImpl implements TimePointCalculationServ
 
     public TimePoint calculate(final BigDecimal rateNumber, final InputData inputData) {
         if (!BigDecimal.ONE.equals(rateNumber)) {
-            throw new RuntimeException("This method only accepts rateNumber equal to ONE");
+            throw new RuntimeException("This method only accepts installmentNumber equal to ONE");
         }
         BigDecimal year = calculateYear(rateNumber);
         BigDecimal month = calculateMonth(rateNumber);
@@ -22,10 +22,10 @@ public class TimePointCalculationServiceImpl implements TimePointCalculationServ
         return new TimePoint(year, month, date);
     }
 
-    public TimePoint calculate(BigDecimal rateNumber, Rate previousRate) {
+    public TimePoint calculate(BigDecimal rateNumber, Installment previousInstallment) {
         BigDecimal year = calculateYear(rateNumber);
         BigDecimal month = calculateMonth(rateNumber);
-        LocalDate date = previousRate.timePoint().date().plusMonths(1);
+        LocalDate date = previousInstallment.timePoint().date().plusMonths(1);
         return new TimePoint(year, month, date);
     }
 

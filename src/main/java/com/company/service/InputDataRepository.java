@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import com.company.model.InputData;
-import com.company.model.RateType;
+import com.company.model.InstallmentType;
 
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -38,7 +38,7 @@ public class InputDataRepository {
             .wiborPercent(Optional.ofNullable(inputData.get("wibor")).map(BigDecimal::new).orElseThrow())
             .amount(Optional.ofNullable(inputData.get("amount")).map(BigDecimal::new).orElseThrow())
             .monthsDuration(Optional.ofNullable(inputData.get("monthsDuration")).map(BigDecimal::new).orElseThrow())
-            .rateType(Optional.ofNullable(inputData.get("rateType")).map(RateType::valueOf).orElseThrow())
+            .installmentType(Optional.ofNullable(inputData.get("rateType")).map(InstallmentType::valueOf).orElseThrow())
             .marginPercent(Optional.ofNullable(inputData.get("margin")).map(BigDecimal::new).orElseThrow())
             .overpaymentProvisionPercent(Optional.ofNullable(inputData.get("overpaymentProvision")).map(BigDecimal::new).orElseThrow())
             .overpaymentProvisionMonths(Optional.ofNullable(inputData.get("overpaymentProvisionMonths")).map(BigDecimal::new).orElseThrow())

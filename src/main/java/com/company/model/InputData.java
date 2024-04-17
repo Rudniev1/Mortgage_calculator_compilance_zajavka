@@ -20,7 +20,7 @@ public class InputData {
     BigDecimal wiborPercent;
     BigDecimal amount;
     BigDecimal monthsDuration;
-    RateType rateType;
+    InstallmentType installmentType;
     BigDecimal marginPercent;
     BigDecimal overpaymentProvisionPercent;
     BigDecimal overpaymentProvisionMonths;
@@ -36,7 +36,7 @@ public class InputData {
                 .wiborPercent(BigDecimal.valueOf(1.70))
                 .amount(BigDecimal.valueOf(301953.46))
                 .monthsDuration(BigDecimal.valueOf(180))
-                .rateType(RateType.CONSTANT)
+                .installmentType(InstallmentType.CONSTANT)
                 .marginPercent(BigDecimal.valueOf(1.6))
                 .overpaymentProvisionPercent(BigDecimal.valueOf(3))
                 .overpaymentProvisionMonths(BigDecimal.valueOf(36))

@@ -2,11 +2,11 @@ package com.company.service;
 
 import com.company.model.InputData;
 import com.company.model.Overpayment;
-import com.company.model.Rate;
-import com.company.model.RateAmounts;
+import com.company.model.Installment;
+import com.company.model.InstallmentAmounts;
 public interface ConstantAmountsCalculationService {
 
-    RateAmounts calculate(InputData inputData, Overpayment overpayment);
+    InstallmentAmounts calculate(InputData inputData, Overpayment overpayment);
 
-    RateAmounts calculate(InputData inputData, Overpayment overpayment, Rate previousRate);
+    InstallmentAmounts calculate(InputData inputData, Overpayment overpayment, Installment previousInstallment);
 }

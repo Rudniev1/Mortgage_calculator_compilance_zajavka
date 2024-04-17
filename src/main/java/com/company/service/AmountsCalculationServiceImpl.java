@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.company.model.InputData;
 import com.company.model.Overpayment;
-import com.company.model.Rate;
-import com.company.model.RateAmounts;
+import com.company.model.Installment;
+import com.company.model.InstallmentAmounts;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -18,18 +18,18 @@ public class AmountsCalculationServiceImpl implements AmountsCalculationService 
     private final DecreasingAmountsCalculationService decreasingAmountsCalculationService;
 
     @Override
-    public RateAmounts calculate(final InputData inputData, final Overpayment overpayment) {
-        return switch (inputData.getRateType()) {
+    public InstallmentAmounts calculate(final InputData inputData, final Overpayment overpayment) {
+        return switch (inputData.getInstallmentType()) {
             case CONSTANT -> constantAmountsCalculationService.calculate(inputData, overpayment);
             case DECREASING -> decreasingAmountsCalculationService.calculate(inputData, overpayment);
         };
     }
 
     @Override
-    public RateAmounts calculate(final InputData inputData, final Overpayment overpayment, final Rate previousRate) {
-        return switch (inputData.getRateType()) {
-            case CONSTANT -> constantAmountsCalculationService.calculate(inputData, overpayment, previousRate);
-            case DECREASING -> decreasingAmountsCalculationService.calculate(inputData, overpayment, previousRate);
+    public InstallmentAmounts calculate(final InputData inputData, final Overpayment overpayment, final Installment previousInstallment) {
+        return switch (inputData.getInstallmentType()) {
+            case CONSTANT -> constantAmountsCalculationService.calculate(inputData, overpayment, previousInstallment);
+            case DECREASING -> decreasingAmountsCalculationService.calculate(inputData, overpayment, previousInstallment);
         };
     }
 

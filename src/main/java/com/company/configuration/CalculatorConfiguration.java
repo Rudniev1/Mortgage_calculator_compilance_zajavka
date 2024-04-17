@@ -3,8 +3,8 @@ package com.company.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import com.company.model.Rate;
-import com.company.model.RateAmounts;
+import com.company.model.Installment;
+import com.company.model.InstallmentAmounts;
 import com.company.model.Summary;
 import com.company.service.SummaryService;
 
@@ -19,21 +19,21 @@ public class CalculatorConfiguration {
     @Bean
     public static SummaryService create() {
         return rates -> {
-            BigDecimal interestSum = calculate(rates, rate -> rate.rateAmounts().interestAmount());
-            BigDecimal overpaymentProvisionSum = calculate(rates, rate -> rate.rateAmounts().overpayment().provisionAmount());
+            BigDecimal interestSum = calculate(rates, rate -> rate.installmentAmounts().interestAmount());
+            BigDecimal overpaymentProvisionSum = calculate(rates, rate -> rate.installmentAmounts().overpayment().provisionAmount());
             BigDecimal totalLostSum = interestSum.add(overpaymentProvisionSum);
-            BigDecimal totalCapital = calculate(rates, rate -> totalCapital(rate.rateAmounts()));
+            BigDecimal totalCapital = calculate(rates, rate -> totalCapital(rate.installmentAmounts()));
             return new Summary(interestSum, overpaymentProvisionSum, totalLostSum, totalCapital);
         };
     }
 
-    private static BigDecimal totalCapital(final RateAmounts rateAmounts) {
-        return rateAmounts.capitalAmount().add(rateAmounts.overpayment().amount());
+    private static BigDecimal totalCapital(final InstallmentAmounts installmentAmounts) {
+        return installmentAmounts.capitalAmount().add(installmentAmounts.overpayment().amount());
     }
 
-    private static BigDecimal calculate(final List<Rate> rates, Function<Rate, BigDecimal> function) {
+    private static BigDecimal calculate(final List<Installment> installments, Function<Installment, BigDecimal> function) {
 
-        return rates.stream()
+        return installments.stream()
                 .reduce(BigDecimal.ZERO,(sum, rate) ->  sum.add(function.apply(rate)), BigDecimal::add);
     }
 
