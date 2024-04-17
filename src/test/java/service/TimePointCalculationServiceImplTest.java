@@ -24,7 +24,7 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 class TimePointCalculationServiceTest {
 
     @InjectMocks
-    private TimePointCalculationService timePointCalculationService = new TimePointCalculationServiceImpl();
+    private TimePointCalculationServiceImpl timePointCalculationService;
 
 
     @Test

@@ -12,7 +12,7 @@ public class TestDataFixtures {
         return Installment.builder()
             .installmentNumber(BigDecimal.valueOf(10))
             .timePoint(someTimePoint())
-            .installmentAmounts(someRateAmounts())
+            .installmentAmounts(someInstallmentAmounts())
             .mortgageResidual(someMortgageResidual())
             .mortgageReference(someMortgageReference())
             .build();
@@ -65,7 +65,7 @@ public class TestDataFixtures {
             .build();
     }
 
-    public static InstallmentAmounts someRateAmounts() {
+    public static InstallmentAmounts someInstallmentAmounts() {
         return InstallmentAmounts.builder()
             .installmentAmount(new BigDecimal("1516.73"))
             .capitalAmount(new BigDecimal("773.23"))

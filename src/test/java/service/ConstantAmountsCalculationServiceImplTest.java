@@ -1,6 +1,5 @@
 package service;
 
-import com.company.service.ConstantAmountsCalculationService;
 import com.company.service.ConstantAmountsCalculationServiceImpl;
 import fixtures.TestDataFixtures;
 import org.junit.jupiter.api.Assertions;
@@ -19,14 +18,14 @@ import java.math.BigDecimal;
 class ConstantAmountsCalculationServiceImplTest {
 
     @InjectMocks
-    private ConstantAmountsCalculationService constantAmountsCalculationService = new ConstantAmountsCalculationServiceImpl();
+    private ConstantAmountsCalculationServiceImpl constantAmountsCalculationService;
 
     @Test
     @DisplayName("Calculate installment amounts for first rate")
     void shouldCalculateFirstInstallmentAmountsCorrectly() {
         // given
         InputData inputData = TestDataFixtures.someInputData();
-        InstallmentAmounts expected = TestDataFixtures.someRateAmounts();
+        InstallmentAmounts expected = TestDataFixtures.someInstallmentAmounts();
 
         // when
         InstallmentAmounts result = constantAmountsCalculationService.calculate(inputData, null);
@@ -41,7 +40,7 @@ class ConstantAmountsCalculationServiceImplTest {
         // given
         InputData inputData = TestDataFixtures.someInputData();
         Installment installment = TestDataFixtures.someInstallment();
-        InstallmentAmounts expected = TestDataFixtures.someRateAmounts()
+        InstallmentAmounts expected = TestDataFixtures.someInstallmentAmounts()
             .withInstallmentAmount(new BigDecimal("3303.45"))
             .withInterestAmount(new BigDecimal("2483.87"))
             .withCapitalAmount(new BigDecimal("819.58"));
